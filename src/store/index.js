@@ -8,10 +8,12 @@ const NASA_KEY = "h672eM0kcf7paLRryzPxQGrTZ27z728wzIFLmU47"
 
 export default new Vuex.Store({
   state: {
-    apod: {}
+    apod: {},
+    currentUser: null
   },
   mutations: {
-    GET_APOD(state, apod) { state.apod = apod }
+    GET_APOD(state, apod) { state.apod = apod },
+    UPDATE_CURRENT_USER(state, user) { state.currentUser = user}
   },
   actions: {
     getApod({commit}){
@@ -22,6 +24,9 @@ export default new Vuex.Store({
       .catch(() => {
         commit('GET_APOD', {url: "https://apod.nasa.gov/apod/image/2010/NGC5643_HubbleZamani_960.jpg"})
       })
+    },
+    updateCurrentUser({commit}, user){
+      commit('UPDATE_CURRENT_USER', user)
     }
   },
   modules: {
